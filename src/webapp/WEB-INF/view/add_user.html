@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add User</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class = "container">
+    <br>
+    <br>
+<h2> Add User</h2>
+
+<form th:method="post" th:action="@{/addUser}" th:object="${user}" >
+
+    <table class = "table table-striped table-bordered">
+        <tr><td>Name</td><td>
+            <input th:type="text" th:field="*{name}" required  class="data"></td></tr>
+
+        <tr><td>LastName</td><td>
+            <input th:type="text" required th:field="*{lastName}" class="data"></td></tr>
+
+        <tr><td>Email</td><td>
+            <input th:type="text" required  th:field="*{email}" class="data"></td></tr>
+
+        <tr><td>Country</td><td>
+            <input th:type="text" required  th:field="*{country}" class="data"></td></tr>
+
+        <tr style="text-align: right;">
+            <td colspan="2">
+                <button type="submit" class = "btn btn-primary">
+                    Submit
+                </button>
+                <a th:href="@{/}" class = "btn btn-danger"> Cancel </a>
+            </td>
+        </tr>
+    </table>
+
+
+</form>
+</div>
+
+</body>
+</html>
