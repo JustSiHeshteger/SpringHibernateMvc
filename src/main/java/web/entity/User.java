@@ -1,6 +1,7 @@
 package web.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -22,14 +23,14 @@ public class User {
     @Column(name = "country")
     private String country;
 
+    public User() {
+    }
+
     public User(String name, String lastName, String email, String country) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.country = country;
-    }
-
-    public User() {
     }
 
     public int getId() {
@@ -70,5 +71,17 @@ public class User {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User user)) return false;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

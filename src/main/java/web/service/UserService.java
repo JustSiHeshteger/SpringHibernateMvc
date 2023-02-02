@@ -13,5 +13,5 @@ public interface UserService {
 
     void deleteUser(int id);
 
-    User readUser(int id);
+    User getUserById(int id);
 }

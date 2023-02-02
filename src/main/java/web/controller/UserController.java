@@ -17,57 +17,40 @@ public class UserController {
         this.userService = userService;
     }
 
-    ///Display
-
     @GetMapping("/")
-    public String displayUsers(Model model) {
+    public String getUserPage(Model model) {
         model.addAttribute("allUsers", userService.getAllUsers());
         return "users";
     }
 
-    ///Display
-
-    ///Add
-
     @GetMapping("/new")
-    public String addUser(Model model) {
+    public String getAddNewUserPage(Model model) {
         model.addAttribute("user", new User());
         return "add_user";
     }
 
     @PostMapping("/addUser")
-    public String saveUser(@ModelAttribute("user") User user) {
+    public String saveNewUserToDb(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/";
     }
 
-    ///Add
-
-    ///Update
-
     @GetMapping("/editUser/{userId}")
-    public String editUser(@PathVariable("userId") int id, Model model){
-        model.addAttribute("user", userService.readUser(id));
+    public String getEditUserPage(@PathVariable("userId") int id, Model model){
+        model.addAttribute("user", userService.getUserById(id));
         return "edit_user";
     }
 
     @PatchMapping(value="/editUser/{getId}")
-    public String saveEditedUser(@PathVariable int getId, @ModelAttribute("user") User user){
+    public String saveEditedUserToDb(@PathVariable int getId, @ModelAttribute("user") User user){
         user.setId(getId);
         userService.updateUser(user);
         return "redirect:/";
     }
 
-    ///Update
-
-    ///Delete
-
     @DeleteMapping("deleteUser/{getId}")
-    public String deleteUser(@PathVariable int getId) {
+    public String deleteUserFromDb(@PathVariable int getId) {
         userService.deleteUser(getId);
         return "redirect:/";
     }
-
-    ///Delete
-
 }
